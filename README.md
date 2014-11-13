@@ -8,8 +8,10 @@ It will hack the skill point when battle execute.
 	wget https://bitbucket.org/decalage/cherryproxy/downloads/CherryProxy-0.13.zip
 	unzip CherryProxy-0.13.zip
 	cd CherryProxy-0.13
-	python setup.py
+	sudo python setup.py install
 	
+**Notice:** if you don't have permission to install, just put the MerugaProxy folder under CherryProxy-0.13, or you con change the path by your self.
+
 ## Run MerugaProxy
 	git clone https://github.com/knowlet/MerugaProxy.git
 	cd MerugaProxy
