@@ -7,7 +7,9 @@ It will hack the skill point when battle execute.
 ## Run MerugaProxy
 	git clone https://github.com/knowlet/MerugaProxy.git
 	cd MerugaProxy
-	python meruga.py -a 0.0.0.0
+	cd nodejs
+	npm install
+	npm start
 	
 ## Proxy Usage
 * **Android:** Settings -> Wi-Fi -> The Wifi you are using -> Modify network -> Show advanced options -> Proxy -> Manual -> Set your proxy hostname and port
