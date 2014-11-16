@@ -11,7 +11,7 @@ String.prototype.escapeSpecialChars = function() {
                .replace(/\\f/g, "\\f");
 };
 // replace all instances of 'Apple' with 'Orange' in Techcrunch articles
-proxy.tamper(/toto-taiwan.hekk.org.*execute/, function (request) {
+proxy.tamper(/toto-taiwan.hekk.org.*execute.*json/, function (request) {
   console.log('tampering ' + request.url);
 
   // gzip encoding is not supported when tampering the body
@@ -20,9 +20,9 @@ proxy.tamper(/toto-taiwan.hekk.org.*execute/, function (request) {
   request.onResponse(function (response) {
     // tamper the body
     if (response.body.search('不足') == -1) {
-      console.log('~~~ hacking sp point!');
-      var resJson = JSON.parse(response.body.toString('utf8').escapeSpecialChars());
-      resJson["units"][0]["bonus_sp"] *= 500;
+      console.log('~~~ hacking skill point!');
+      var resJson = JSON.parse(response.body.escapeSpecialChars());
+      resJson["units"][0]["bonus_sp"] *= 1000;
       response.body = JSON.stringify(resJson);
       response.headers['server'] = 'proxy-tamper 1337';
     } else {
