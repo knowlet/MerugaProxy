@@ -1,0 +1,25 @@
+{
+    "name": "MerugaProxy",
+    "description": "A nodejs proxy depend on proxy-tamper.",
+    "author": {
+        "name": "KNowlet"
+    },
+    "version": "0.0.1",
+    "engines": {
+        "node": ">=0.10.0"
+    },
+    "homepage": "https://github.com/knowlet/MerugaProxy/nodejs",
+    "dependencies": {
+        "proxy-tamper": "latest"
+    },
+    "main": "meruka.js",
+    "keywords": [
+        "proxy",
+        "tamper",
+        "meruka",
+        "hack"
+    ],
+    "scripts": {
+        "start": "node meruka.js"
+    }
+}
