@@ -12,14 +12,14 @@
     "dependencies": {
         "proxy-tamper": "latest"
     },
-    "main": "meruka.js",
+    "main": "meruga.js",
     "keywords": [
         "proxy",
         "tamper",
-        "meruka",
+        "meruga",
         "hack"
     ],
     "scripts": {
-        "start": "node meruka.js"
+        "start": "node meruga.js"
     }
 }
