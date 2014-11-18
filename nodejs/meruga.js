@@ -1,11 +1,28 @@
-var proxy = require('proxy-tamper').start({port: 8070});
+var port = 8070;
+var proxy = require('proxy-tamper').start({port: port});
+var mult = 1000;
 
 function log(str) {
-  console.log(' [' + new Date().toTimeString().split(' ')[0] + '] ' + str);
+  console.log(' [' + new Date().toLocaleTimeString() + '] ' + str);
 }
+// block other website
+// proxy.tamper(/^((?!toto)[\s\S])*$/, "Sorry, The Proxy is for Meruga Only.");
 
-proxy.tamper(/m.happyelements.com\/rest_v3/, function (request) {
-  log('device connect!');
+proxy.tamper(/toto-taiwan.hekk.org\/users\/preset_data.json/, function (request) {
+  log('device connect: ' + request.headers.device_info);
+  delete request.headers['accept-encoding'];
+  request.onResponse(function (response) {
+    try {
+      var resJson = JSON.parse(response.body.toString('utf8').escapeSpecialChars());
+      log('Welcome User ' + resJson.data.user.name);
+      resJson.data.infos.unshift({"body": "癒術士大大安安~\r\n外掛已經成功連線了喔\r\n目前修改倍率為 " + mult + " 倍喔啾咪 O_<", "categories": [], "created_at": new Date().toISOString(), "deleted_at": null, "id": 0, "rich_body": "", "title": "外掛連線通知", "updated_at": new Date().toISOString(), "visible": true, "wordpress_id": 0, "created_sec": 0, "updated_sec": 0});
+      response.body = JSON.stringify(resJson);
+    } catch(err) {
+      log('Unknown User Connect.')
+      log(err);
+    }
+    response.complete();
+  });
 });
 /*
 // debug
@@ -35,11 +52,12 @@ proxy.tamper(/toto-taiwan.hekk.org.*execute.*json/, function (request) {
     try {
       var resJson = JSON.parse(response.body.toString('utf8').escapeSpecialChars());
       if (response.body.search('modal') != -1)
-        log(resJson['modal']['body'].replace(/\n/, ' '));
+        log(resJson.modal.body.replace(/\n/, ' '));
       else {
+        log(resJson.data.user.name + '進場ing...')
         log('hacking sp point!');
         // console.log(response.body.toString('utf8'));
-        resJson['units'][0]['bonus_sp'] *= 500;
+        resJson.units[0].bonus_sp *= mult;
         response.body = JSON.stringify(resJson);
       }
     } catch (err) {
