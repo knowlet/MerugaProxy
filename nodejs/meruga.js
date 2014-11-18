@@ -24,7 +24,7 @@ String.prototype.escapeSpecialChars = function() {
                .replace(/\\f/g, "\\f");
 };
 
-proxy.tamper(/toto-taiwan.hekk.org.*execute/, function (request) {
+proxy.tamper(/toto-taiwan.hekk.org.*execute.*json/, function (request) {
   log('tampering ' + request.url.split('?')[0]);
 
   // gzip encoding is not supported when tampering the body
