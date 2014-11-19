@@ -7,7 +7,6 @@ It will hack the skill point when battle execute.
 ## Run MerugaProxy
 	git clone https://github.com/knowlet/MerugaProxy.git
 	cd MerugaProxy
-	cd nodejs
 	npm install
 	npm start
 	
