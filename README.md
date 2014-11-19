@@ -15,7 +15,6 @@ It will hack the skill point when battle execute.
 ## Run MerugaProxy
 	git clone https://github.com/knowlet/MerugaProxy.git
 	cd MerugaProxy
-	cd python
 	python meruga.py -a 0.0.0.0
 	
 ## Proxy Usage
