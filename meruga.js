@@ -11,7 +11,7 @@ log('Proxy Start at port: ' + port);
 // block other website
 // proxy.tamper(/^((?!toto)[\s\S])*$/, 'Sorry, The Proxy is for Meruga Only.');
 
-proxy.tamper(/toto-taiwan.hekk.org\/users\/preset_data.json/, function (request) {
+proxy.tamper(/toto.*.hekk.org\/users\/preset_data.json/, function (request) {
   log('Device connect: ' + request.headers.device_info.split(':::')[0]);
   delete request.headers['accept-encoding'];
   request.onResponse(function (response) {
@@ -28,7 +28,7 @@ proxy.tamper(/toto-taiwan.hekk.org\/users\/preset_data.json/, function (request)
   });
 });
 /*
-proxy.tamper(/toto-taiwan.hekk.org\/users\/messages/, function (request) {
+proxy.tamper(/toto.*.hekk.org\/users\/messages/, function (request) {
   delete request.headers['accept-encoding'];
   request.onResponse(function (response) {
     try {
@@ -46,7 +46,7 @@ proxy.tamper(/toto-taiwan.hekk.org\/users\/messages/, function (request) {
 });
 */
 // Show all album
-proxy.tamper(/toto-taiwan.hekk.org\/albums\/$/, function (request) {
+proxy.tamper(/toto.*.hekk.org\/albums\/$/, function (request) {
   delete request.headers['accept-encoding'];
   request.onResponse(function (response) {
     var resJson = JSON.parse(response.body);
@@ -69,9 +69,9 @@ proxy.tamper(/./, function (request) {
 */
 
 // offline game mode.
-// proxy.tamper(/toto-taiwan.hekk.org\/quests\/ap_use/, '{"status":"success"}');
+// proxy.tamper(/toto.*.hekk.org\/quests\/ap_use/, '{"status":"success"}');
 
-proxy.tamper(/toto-taiwan.hekk.org.*execute.*json/, function (request) {
+proxy.tamper(/toto.*.hekk.org.*execute.*json/, function (request) {
   log('tampering ' + request.url.split('?')[0]);
 
   // gzip encoding is not supported when tampering the body
