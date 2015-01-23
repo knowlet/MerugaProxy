@@ -9,7 +9,7 @@ function log(str) {
 
 log('Proxy Start at port: ' + port);
 // block other website
-// proxy.tamper(/^((?!toto)[\s\S])*$/, 'Sorry, The Proxy is for Meruga Only.');
+proxy.tamper(/^((?!toto.*hekk.org)[\s\S])*$/, 'Sorry, The Proxy is for Meruga Only.');
 
 proxy.tamper(/toto.*.hekk.org\/users\/preset_data.json/, function (request) {
   log('Device connect: ' + request.headers.device_info.split(':::')[0]);
@@ -44,7 +44,7 @@ proxy.tamper(/toto.*.hekk.org\/users\/messages/, function (request) {
     response.complete();
   });
 });
-*/
+
 // Show all album
 proxy.tamper(/toto.*.hekk.org\/albums\/$/, function (request) {
   delete request.headers['accept-encoding'];
@@ -62,7 +62,7 @@ proxy.tamper(/toto.*.hekk.org\/albums\/$/, function (request) {
 });
 
 // debug
-/*
+
 proxy.tamper(/./, function (request) {
   console.log('debug ' + request.url);
 });
